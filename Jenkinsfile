@@ -11,7 +11,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("joebuhr/hellonode")
+        app = docker.build("joebuhr/speedtestpy")
     }
 
     stage('Test image') {
@@ -31,7 +31,7 @@ node {
             dockerAddress: 'unix:///var/run/docker.sock',
             gracePeriodDays: 0,
             ignoreImageBuildTime: true,
-            image: 'joebuhr/hellonode',
+            image: 'joebuhr/speedtestpy',
             key: '',
             logLevel: 'true',
             policy: 'warn',
@@ -43,7 +43,7 @@ node {
         twistlockPublish ca: '',
             cert: '',
             dockerAddress: 'unix:///var/run/docker.sock',
-            image: 'joebuhr/hellonode',
+            image: 'joebuhr/speedtestpy',
             key: '',
             logLevel: 'true',
             timeout: 10

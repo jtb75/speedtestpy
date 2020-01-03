@@ -1,3 +1,3 @@
 #!/bin/sh
 set -e
-echo "$1" | crontab - && crond -f -L /dev/stdout
+/app/speed_wrapper.py

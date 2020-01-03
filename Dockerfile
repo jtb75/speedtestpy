@@ -6,6 +6,7 @@ RUN pip install -r /requirements.txt
 
 COPY src/speed_wrapper.py /etc/periodic/15min
 RUN chmod 755 /etc/periodic/15min/speed_wrapper.py
+COPY src/entry.sh /app
+RUN chmod 755 /app/entry.sh
 WORKDIR /app
-
-CMD ["sh", "-c", "tail -f /dev/null"]
+CMD ["/app/entry.sh"]

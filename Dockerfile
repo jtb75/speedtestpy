@@ -8,4 +8,4 @@ COPY src/speed_wrapper.py /etc/periodic/15min
 RUN chmod 755 /etc/periodic/15min/speed_wrapper.py
 WORKDIR /app
 
-CMD sleep 86400
+CMD /bin/sh

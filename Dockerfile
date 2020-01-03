@@ -8,4 +8,4 @@ RUN apk del gcc
 COPY src/* /app/
 RUN chmod 755 /app/*
 WORKDIR /app
-ENTRYPOINT ["/app/speed_wrapper.py"]
+CMD ["/app/speed_wrapper.py"]

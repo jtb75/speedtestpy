@@ -1,4 +1,4 @@
-
+#!/usr/local/bin/python
 #
 import subprocess
 import psycopg2
@@ -47,7 +47,7 @@ def create_tables():
         if row[1] == name_Table:
             tblexists = 1
     if not tblexists:
-        sql = "create table speed_tbl (id serial, host varchar(128), distance numeric(8, 4), ping numeric(8, 4), upload numeric(8, 4), download numeric(8, 4),
+        sql = "create table speed_tbl (id serial, host varchar(128), distance numeric(8, 4), ping numeric(8, 4), upload numeric(8, 4), download numeric(8, 4), ts timestamp)"
         cur.execute(sql)
         conn.commit()
     conn.close()
@@ -79,7 +79,7 @@ def run_speed_test():
     except:
         print ("I am unable to connect to the database")
     cur = conn.cursor()
-    cur.execute("insert into speed_tbl(host, distance, ping, upload, download, ts) values (%s, %s, %s, %s, %s, %s)", (host, distance[0], pingspeed[0], upload[
+    cur.execute("insert into speed_tbl(host, distance, ping, upload, download, ts) values (%s, %s, %s, %s, %s, %s)", (host, distance[0], pingspeed[0], upload[0], download[0], dt_object))
     conn.commit()
     conn.close()
 ############################################################################3

@@ -1,5 +1,6 @@
 #!/usr/local/bin/python
 #
+import time
 import subprocess
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
@@ -85,7 +86,9 @@ def run_speed_test():
 ############################################################################3
 
 
-
 create_db()
 create_tables()
-run_speed_test()
+
+while True:
+    run_speed_test()
+    time.sleep(300)

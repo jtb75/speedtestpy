@@ -1,3 +1,3 @@
 #!/bin/sh
-# start cron
-/usr/sbin/crond -f -l 8
+set -e
+echo "$1" | crontab - && crond -f -L /dev/stdout

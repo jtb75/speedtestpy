@@ -23,32 +23,6 @@ node {
         }
     }
 
-    stage('Scan image') {
-        twistlockScan ca: '',
-            cert: '',
-            compliancePolicy: 'warn',
-            containerized: false,
-            dockerAddress: 'unix:///var/run/docker.sock',
-            gracePeriodDays: 0,
-            ignoreImageBuildTime: true,
-            image: 'joebuhr/speedtestpy',
-            key: '',
-            logLevel: 'true',
-            policy: 'warn',
-            requirePackageUpdate: false,
-            timeout: 10
-}
-
-    stage('Publish scan results') {
-        twistlockPublish ca: '',
-            cert: '',
-            dockerAddress: 'unix:///var/run/docker.sock',
-            image: 'joebuhr/speedtestpy',
-            key: '',
-            logLevel: 'true',
-            timeout: 10
-}
-
     stage('Push image') {
         /* Finally, we'll push the image with two tags:
          * First, the incremental build number from Jenkins

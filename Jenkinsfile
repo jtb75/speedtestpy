@@ -14,15 +14,6 @@ node {
         app = docker.build("joebuhr/speedtestpy")
     }
 
-    stage('Test image') {
-        /* Ideally, we would run a test framework against our image.
-         * For this example, we're using a Volkswagen-type approach ;-) */
-
-        app.inside {
-            sh 'echo "Tests passed"'
-        }
-    }
-
     stage('Scan image') {
         prismaCloudScanImage ca: '',
         cert: '',
@@ -38,6 +29,15 @@ node {
     stage('Publish scan results') {
         prismaCloudPublish resultsFilePattern: 'prisma-cloud-scan-results.json'
 }
+
+    stage('Test image') {
+        /* Ideally, we would run a test framework against our image.
+         * For this example, we're using a Volkswagen-type approach ;-) */
+
+        app.inside {
+            sh 'echo "Tests passed"'
+        }
+    }
 
     stage('Push image') {
         /* Finally, we'll push the image with two tags:

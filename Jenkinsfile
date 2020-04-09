@@ -24,29 +24,19 @@ node {
     }
 
     stage('Scan image') {
-        twistlockScan ca: '',
-            cert: '',
-            compliancePolicy: 'warn',
-            containerized: false,
-            dockerAddress: 'unix:///var/run/docker.sock',
-            gracePeriodDays: 0,
-            ignoreImageBuildTime: true,
-            image: 'joebuhr/speedtestpy',
-            key: '',
-            logLevel: 'true',
-            policy: 'warn',
-            requirePackageUpdate: false,
-            timeout: 10
+        prismaCloudScanImage ca: '',
+        cert: '',
+        dockerAddress: 'unix:///var/run/docker.sock',
+	image: 'joebuhr/speedtestpy',
+	key: '',
+	logLevel: 'info',
+	podmanPath: '',
+	project: '',
+	resultsFile: 'prisma-cloud-scan-results.json'
 }
 
     stage('Publish scan results') {
-        twistlockPublish ca: '',
-            cert: '',
-            dockerAddress: 'unix:///var/run/docker.sock',
-            image: 'joebuhr/speedtestpy',
-            key: '',
-            logLevel: 'true',
-            timeout: 10
+        prismaCloudPublish resultsFilePattern: 'prisma-cloud-scan-results.json'
 }
 
     stage('Push image') {

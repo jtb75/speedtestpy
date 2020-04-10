@@ -7,6 +7,15 @@ node {
         checkout scm
     }
 
+    stage('Test image') {
+        /* Ideally, we would run a test framework against our image.
+         * For this example, we're using a Volkswagen-type approach ;-) */
+
+        app.inside {
+            sh 'echo "Tests passed"'
+        }
+    }
+
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
@@ -29,15 +38,6 @@ node {
     stage('Publish scan results') {
         prismaCloudPublish resultsFilePattern: 'prisma-cloud-scan-results.json'
 }
-
-    stage('Test image') {
-        /* Ideally, we would run a test framework against our image.
-         * For this example, we're using a Volkswagen-type approach ;-) */
-
-        app.inside {
-            sh 'echo "Tests passed"'
-        }
-    }
 
     stage('Push image') {
         /* Finally, we'll push the image with two tags:

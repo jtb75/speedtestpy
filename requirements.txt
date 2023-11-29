@@ -1,3 +1,2 @@
 speedtest-cli
 psycopg2
-requests

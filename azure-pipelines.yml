@@ -26,4 +26,11 @@ stages:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
-          $(tag)
+          - task: wiz@0
+  inputs:
+    command: 'image'
+    clientid: 'yfqzsmnuxzfotn7xvi7uvii6ngdiy67gtqtfwz4mw2wfs5prlxvws'
+    secret: 'ZId1sLpbB87NFiNRycoDteCRb8SNhgqsTGvhuD7RHIGScrvDj2LfwG62LSOeM3h9'
+    image: $(tag)
+    policyHitsOnly: true
+    fileHashesScan: true

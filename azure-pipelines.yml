@@ -6,7 +6,7 @@ resources:
 
 variables:
   acrName: 'myacr.azurecr.io'
-  imageName: 'my-app'
+  imageName: 'speedtestpy'
   tag: '$(Build.BuildId)'
   fullImageName: '$(acrName)/$(imageName):$(tag)'
 

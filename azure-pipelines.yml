@@ -5,7 +5,10 @@ resources:
 - repo: self
 
 variables:
+  acrName: 'myacr.azurecr.io'
+  imageName: 'my-app'
   tag: '$(Build.BuildId)'
+  fullImageName: '$(acrName)/$(imageName):$(tag)'
 
 stages:
 - stage: Build
@@ -21,6 +24,7 @@ stages:
       inputs:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        repository: '$(acrName)/$(imageName)'
         tags: |
           $(tag)
 
@@ -28,8 +32,8 @@ stages:
       displayName: Wiz Image Scan
       inputs:
         command: 'image'
-        clientid: 'yfqzsmnuxzfotn7xvi7uvii6ngdiy67gtqtfwz4mw2wfs5prlxvws'
-        secret: 'ZId1sLpbB87NFiNRycoDteCRb8SNhgqsTGvhuD7RHIGScrvDj2LfwG62LSOeM3h9'
-        image: '$(tag)'
+        clientid: '$(WIZ_CLIENT_ID)'
+        secret: '$(WIZ_CLIENT_SECRET)'
+        image: '$(fullImageName)'
         policyHitsOnly: true
         fileHashesScan: true

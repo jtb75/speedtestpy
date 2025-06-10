@@ -35,5 +35,5 @@ stages:
         clientid: '$(WIZ_CLIENT_ID)'
         secret: '$(WIZ_CLIENT_SECRET)'
         image: '$(fullImageName)'
-        policyHitsOnly: true
+        policyHitsOnly: false
         fileHashesScan: true
